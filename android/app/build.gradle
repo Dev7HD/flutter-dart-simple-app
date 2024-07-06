@@ -1,3 +1,6 @@
+buildscript {
+    ext.kotlin_version = '1.8.10'
+}
 plugins {
     id "com.android.application"
     id "kotlin-android"
@@ -55,4 +58,8 @@ android {
 
 flutter {
     source = "../.."
+}
+
+dependencies {
+    implementation 'com.google.android.material:material:1.12.0'
 }

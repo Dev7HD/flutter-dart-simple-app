@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -5,7 +6,7 @@ import 'package:intl/intl.dart';
 
 class Weather extends StatefulWidget {
   final String city;
-  Weather(this.city);
+  const Weather(this.city, {super.key});
 
   @override
   _WeatherState createState() => _WeatherState();
@@ -51,8 +52,20 @@ class _WeatherState extends State<Weather> {
           var formattedDate = DateFormat('E dd/MM/yyyy').format(date);
           var formattedTime = DateFormat('HH:mm').format(date);
           var weatherMain = weather['day']['condition']['text'].toString();
+          var weatherState = '';
+          if(weatherMain.toLowerCase().contains('rain')) {
+            weatherState = 'Rainy';
+          } else if(weatherMain.toLowerCase().contains('sun')) {
+            weatherState = 'Sunny';
+          } else if(weatherMain.toLowerCase().contains('snow')) {
+            weatherState = 'Snowy';
+          } else if (weatherMain.toLowerCase().contains('cloud')) {
+            weatherState = 'Cloudy';
+          } else {
+            weatherState = 'default';
+          }
 
-          return Card(
+                return Card(
             color: Colors.deepOrangeAccent,
             child: Padding(
               padding: const EdgeInsets.all(12.0),
@@ -62,7 +75,7 @@ class _WeatherState extends State<Weather> {
                   Row(
                     children: <Widget>[
                       CircleAvatar(
-                        backgroundImage: AssetImage('assets/images/$weatherMain.png'),
+                        backgroundImage: AssetImage('assets/images/$weatherState.png'),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 10),

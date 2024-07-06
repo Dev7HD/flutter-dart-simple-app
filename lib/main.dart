@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'quiz.dart';
 import 'weather-form.dart';
+import 'gallery.dart';
 
-void main() => runApp(MaterialApp(
+void main() => runApp(const MaterialApp(
   home: MyApp(),
 ));
 
@@ -14,7 +15,8 @@ class MyApp extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: const Text('First App'),
-          backgroundColor: Colors.orange,
+          backgroundColor: Colors.cyan[900],
+          foregroundColor: Colors.cyan[200],
         ),
         body: const Center(
             child: Text(
@@ -27,7 +29,7 @@ class MyApp extends StatelessWidget {
             children: <Widget>[
               const DrawerHeader(
                 decoration: BoxDecoration(
-                    gradient: LinearGradient(colors: [Colors.orange, Colors.white])),
+                    gradient: LinearGradient(colors: [Color(0xFF006064), Colors.white], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
                 child: Center(
                   child: CircleAvatar(
                     radius: 50,backgroundImage: AssetImage('assets/images/developer.png'),
@@ -51,7 +53,16 @@ class MyApp extends StatelessWidget {
                   trailing: const Icon(Icons.arrow_right),
                   onTap: () {
                     Navigator.of(context).pop();
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => WeatherForm()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const WeatherForm()));
+                  }),
+              ListTile(
+                  title: const Text(
+                    'Gallery',style: TextStyle(fontSize: 18),
+                  ),
+                  trailing: const Icon(Icons.arrow_right),
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const Gallery()));
                   })
             ],
           ),
